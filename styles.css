@@ -1,0 +1,104 @@
+/* GENERAL */
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: auto;
+    padding: 0;
+}
+
+h1 {
+    background-color: teal;
+    color: white;
+    margin-top: 0;
+    padding: 20px;
+}
+
+h2 {
+    background-color: steelblue;
+    color: white;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+}
+
+/* FORM */
+
+#book-form {
+    margin-left: 20px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.input-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    display: block;
+    font-family: inherit;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 3px;
+    width: 100%;
+}
+
+.form-btn {
+    background-color: teal;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    font-family: inherit;
+    font-size: 17px;
+    margin: 20px 0 0 0;
+    padding: 5px 10px;
+    width: 150px;
+}
+
+/* LIBRARY */
+
+table {
+    margin-left: 20px;
+    text-align: left;
+}
+
+table th {
+    font-size: 17px;
+    padding-right: 20px;
+}
+
+table td {
+    padding: 10px 20px 10px 0;
+}
+
+.remove-btn {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    padding: 3px 5px;
+}
+
+/* ALERT MESSAGES */
+
+.success, .error {
+    color: white;
+    font-size: 17px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.error {
+    background-color: red;
+}
+
+.success {
+    background-color: green;
+}
+
