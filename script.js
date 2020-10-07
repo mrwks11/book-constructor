@@ -1,4 +1,4 @@
-// Book Class
+// BOOK CLASS
 class Book {
     constructor(title, author, pages, isbn, read) {
         this.title = title
@@ -9,31 +9,34 @@ class Book {
     }
 }
 
-// UI Class
+// UI CLASS
 class UI {
     static displayBooks() {
-        const books = [];
+        const books = Store.getBooks();
 
         books.forEach((book) => UI.addBookToLibrary(book));
     }
 
+    // Create elements and add book to UI (my library)
     static addBookToLibrary(book) {
         const library = document.querySelector('#library'); 
 
         const row = document.createElement('tr');
+        row.dataset.isbn = book.isbn;
+
         row.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.pages}</td>
             <td>${book.isbn}</td>
             <td>${book.read}</td>
-            <td><button class="remove-btn">Remove</button></td>
+            <td><button class="remove-btn" data-isbn="${book.isbn}">Remove</button></td>
         `;
 
         library.appendChild(row);
     }
 
-    // Show message with error or success
+    // Show error or success message
     static alertMessage(message, className) {
         const container = document.querySelector('.container')
         const form = document.querySelector('#book-form');
@@ -55,7 +58,15 @@ class UI {
         
     }
 
-    // Remove book
+    static checkRadioButtonValue(read) {
+        if (read.checked === true) {
+            return 'yes';
+        } else {
+            return 'no';
+        }
+    }
+
+    // Remove book from UI
     static removeBook(target) {
         if (target.classList.contains('remove-btn')) {
         target.parentElement.parentElement.remove();
@@ -65,9 +76,41 @@ class UI {
     }
 }
 
-// Store Library Class
+// STORE LIBRARY CLASS (
+// local storage can't store arrays, only strings
+class Store {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            // Convert string to array
+            books = JSON.parse(localStorage.getItem('books'));
+        }
 
+        return books;
+    }
 
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        // Convert array to string
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBook(isbn) {
+        // Remove by ISBN because it's unique
+        const books = Store.getBooks();
+        // Loop through books and remove book with ISBN-match
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+        // Convert array to string
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
 
 // Event: display books
 document.addEventListener('DOMContentLoaded', UI.displayBooks());
@@ -83,33 +126,35 @@ form.addEventListener('submit', (e) => {
     const author = document.querySelector('#author').value;
     const pages = document.querySelector('#pages').value;
     const isbn = document.querySelector('#isbn').value;
-    const read = document.querySelector('#read').value;
+    let read = document.querySelector('#read');
 
+    // Check radio button value
+    read = UI.checkRadioButtonValue(read)
+
+    // Check if field is empty
     if (title === '' || 
         author === '' || 
         pages === '' ||
         isbn === '') {
         
         // Initiate error message
-        const message = 'Please fill in all fields';
-        const className = 'error';
-        UI.alertMessage(message, className);
+        UI.alertMessage('Please fill in all fields', 'error');
 
     } else {
 
         // Initiate success message
-        const message = 'Book added succesfully';
-        const className = 'success';
-        UI.alertMessage(message, className);
+        UI.alertMessage('Book added', 'success');
 
-        // Create new book with input values
+        // Create new book with form input
         let book = new Book(title, author, pages, isbn, read);
 
-        // Add book to library
+        // Add book to UI (my library)
         UI.addBookToLibrary(book);
-        UI.displayBooks();
 
-        // Clear form fields
+        // Add book to local storage
+        Store.addBook(book);
+
+        // Clear UI form fields
         form.reset();
         }
 
@@ -118,121 +163,12 @@ form.addEventListener('submit', (e) => {
 // Event: remove a book
 const library = document.querySelector('#library');
 library.addEventListener('click', (e) => {
+    // Remove from UI
     UI.removeBook(e.target);
+
+    // Remove from local storage
+    Store.removeBook( e.target.dataset.isbn )
+
+    // Success message
+    UI.alertMessage('Book removed', 'success');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-let myLibrary = [];
-const library = document.getElementById('library');
-const button = document.getElementById('add-book');
-let newBook;
-
-// BOOK CONSTRUCTOR
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
-
-// PROTOTYPE
-Book.prototype.bookInfo = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read} yet`;
-}
-
-// ADD NEW BOOK
-const form = document.querySelector('form');
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-const pages = document.getElementById('pages');
-const read = document.getElementById('read');
-const notRead = document.getElementById('not-read');
-
-form.addEventListener('submit', (e) => {
-    let newBook = Book(title, author, pages, read);
-
-})
-
-button.addEventListener('click', function() {
-    document.getElementById('library').innerHTML = 
-    '<form>' + 
-        '<div><label for="title">Title: </label>' + 
-        '<input type="text" id="title" name="title"></div>' +
-        '<div><label for="author">Author: </label>' + 
-        '<input type="text" id="author" name="author"></div>' +            '<div><label for="pages">Pages: </label>' + 
-        '<input type="text" id="pages" name="pages"></div>' + 
-        '<div><input type="radio" id="read" name="read">' +
-        '<label for="read">Read yet</label></div>' +
-        '<div><input type="radio" id="not-read" name="not-read">' +
-        '<label for="not-read">Not read yet</label></div>' + 
-        '<button type="submit">ADD TO LIBRARY</button>'
-    '</form>'
-})
-
-// BOOKS
-let book1 = new Book("The Shining", "Stephen King", 300, "not read");
-let book2 = new Book("IT", "Stephen King", 200, "read");
-let book3 = new Book("The Hobbit", "J.K. Rowling", 350, "read");
-let book4 = new Book("De Aanslag", "Harry Mulisch", 400, "read");
-let book5 = new Book("De Avonden", "Gerard Reve", 150, "not read");
-
-// ADD BOOK TO LIBRARY
-function addBookToLibrary(book) {
-    myLibrary.push(book);
-  }
-
-
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
-addBookToLibrary(book4);
-addBookToLibrary(book5);
-
-
-// DISPLAY LIBRARY ON PAGE
-let printThis = '';
-let x;
-
-function displayLibrary() {
-    for (x in myLibrary) {
-        printThis += `<p>${Object.keys(myLibrary[x])}<br>${Object.values(myLibrary[x])}<br>${Object.entries(myLibrary[x])}</p>`;
-    }
-    return printThis;
-}
-
-
-library.innerHTML = displayLibrary();
-displayLibrary();
-
-
-console.table(myLibrary);
-
-console.log(book1.bookInfo());
-
-*/
