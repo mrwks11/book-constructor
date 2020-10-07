@@ -57,7 +57,11 @@ class UI {
 
     // Remove book
     static removeBook(target) {
+        if (target.classList.contains('remove-btn')) {
         target.parentElement.parentElement.remove();
+        } else {
+            return;
+        }
     }
 }
 
