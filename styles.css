@@ -7,98 +7,94 @@ body {
   padding: 0;
 }
 
+h1,
+h2 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
 h1 {
   background-color: teal;
-  color: white;
   margin-top: 0;
-  padding: 20px;
 }
 
 h2 {
   background-color: steelblue;
-  color: white;
   margin-top: 30px;
-  padding: 20px;
 }
 
 .container {
   width: 100%;
 }
 
+.btn {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
+    padding: 3px 5px;
+}
+
 /* FORM */
 
 #book-form {
-  margin-left: 20px;
+  margin: auto;
   max-width: 400px;
   width: 100%;
 }
 
 .input-title {
-  display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .input-field {
-  display: block;
   font-family: inherit;
   font-size: 15px;
   margin-bottom: 10px;
-  padding: 3px;
-  width: 100%;
+  padding: 5px;
+  width: 96%;
 }
 
 .form-btn {
   background-color: teal;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
   display: block;
-  font-family: inherit;
   font-size: 17px;
-  margin: 20px 0 0 0;
-  outline: none;
-  padding: 5px 10px;
-  width: 150px;
+  margin-top: 20px;
+  padding: 8px 10px;
+  width: 100%;
 }
 
 /* LIBRARY */
 
-table {
+#library {
   border: 1px solid teal;
-  margin-left: 20px;
-  min-width: 500px;
+  margin: auto;
+  min-width: 360px;
   text-align: left;
 }
 
-table th {
+#library th {
   background-color: teal;
   color: white;
   font-size: 17px;
   padding: 5px 20px 5px 5px;
 }
 
-tr:nth-child(even) {
+#library tr:nth-child(even) {
   background-color: white;
 }
 
-tr:nth-child(odd) {
+#library tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
 
-table td {
+#library td {
   padding: 5px 20px 5px 5px;
-}
-
-.btn {
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  font-family: inherit;
-  outline: none;
-  padding: 3px 5px;
 }
 
 .read-btn {

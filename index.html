@@ -16,23 +16,17 @@
         <label class="input-title" for="author">Author</label>
         <input class="input-field" type="text" id="author" />
         <label class="input-title" for="pages">Pages</label>
-        <input
-          class="input-field"
-          type="number"
-          id="pages"
-          min="1"
-          max="1000"
-        />
+        <input class="input-field" type="number" id="pages"/>
         <label class="input-title" for="isbn">ISBN</label>
         <input class="input-field" type="number" id="isbn" />
         <input type="radio" id="read" name="read" value="yes" checked />
         <label for="read">Read</label>
         <input type="radio" id="not-read" name="read" value="no" />
         <label for="not-read">Not Read</label>
-        <input class="form-btn" type="submit" value="ADD BOOK" />
+        <input class="btn form-btn" type="submit" value="ADD BOOK" />
       </form>
       <h2>My Library</h2>
-      <table class="table">
+      <table id="library">
         <thead>
           <tr>
             <th>Title</th>
