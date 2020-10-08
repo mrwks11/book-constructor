@@ -11,10 +11,10 @@ class Book {
 
 // UI CLASS
 class UI {
-  static displayBooks() {
-    const books = Store.getBooks();
+  static displayLibrary() {
+    const myLibrary = Store.getMyLibrary();
 
-    books.forEach((book) => UI.addBookToLibrary(book));
+    myLibrary.forEach((book) => UI.addBookToLibrary(book));
   }
 
   // Create elements and add book to UI (my library)
@@ -89,41 +89,41 @@ class UI {
 
 // STORE LIBRARY CLASS (local storage can't store arrays, only strings)
 class Store {
-  static getBooks() {
-    let books;
-    if (localStorage.getItem('books') === null) {
-      books = [];
+  static getMyLibrary() {
+    let myLibrary;
+    if (localStorage.getItem('myLibrary') === null) {
+      myLibrary = [];
     } else {
       // Convert string to array
-      books = JSON.parse(localStorage.getItem('books'));
+      myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
     }
 
-    return books;
+    return myLibrary;
   }
 
   static addBook(book) {
-    const books = Store.getBooks();
-    books.push(book);
+    const myLibrary = Store.getMyLibrary();
+    myLibrary.push(book);
     // Convert array to string
-    localStorage.setItem('books', JSON.stringify(books));
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
   static removeBook(isbn) {
     // Remove by ISBN because it's unique
-    const books = Store.getBooks();
-    // Loop through books and remove book with ISBN-match
-    books.forEach((book, index) => {
+    const myLibrary = Store.getMyLibrary();
+    // Loop through myLibrary and remove book with ISBN-match
+    myLibrary.forEach((book, index) => {
       if (book.isbn === isbn) {
-        books.splice(index, 1);
+        myLibrary.splice(index, 1);
       }
     });
     // Convert array to string
-    localStorage.setItem('books', JSON.stringify(books));
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 }
 
-// Event: display books
-document.addEventListener('DOMContentLoaded', UI.displayBooks());
+// Event: display myLibrary
+document.addEventListener('DOMContentLoaded', UI.displayLibrary());
 
 // Event: add a book
 const form = document.querySelector('#book-form');
