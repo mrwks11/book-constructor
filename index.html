@@ -1,55 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Library</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div class="container">
-        <h1>Add Book to Library</h1>
-        <form id="book-form">
-            <label class="input-title" for="title">Title</label>
-            <input class="input-field" type="text" id="title">
-
-            <label class="input-title" for="author">Author</label>
-            <input class="input-field" type="text" id="author">
-
-            <label class="input-title" for="pages">Pages</label>
-            <input class="input-field" type="number" id="pages" min="1" max="1000">
-
-            <label class="input-title" for="isbn">ISBN</label>
-            <input class="input-field" type="number" id="isbn">
-
-            <input type="radio" id="read" name="read" value="yes" checked>
-            <label for="read">Read</label>
-
-            <input type="radio" id="not-read" name="read" value="no">
-            <label for="not-read">Not Read</label>
-
-            <input class="form-btn" type="submit" value="ADD BOOK">
-        </form>
-
-        <h2>My Library</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Pages</th>
-                    <th>ISBN</th>
-                    <th>Read</th>
-                </tr>
-            </thead>
-            <tbody id="library">
-
-            </tbody>
-        </table>
-
+      <h1>Add Book to Library</h1>
+      <form id="book-form">
+        <label class="input-title" for="title">Title</label>
+        <input class="input-field" type="text" id="title" />
+        <label class="input-title" for="author">Author</label>
+        <input class="input-field" type="text" id="author" />
+        <label class="input-title" for="pages">Pages</label>
+        <input
+          class="input-field"
+          type="number"
+          id="pages"
+          min="1"
+          max="1000"
+        />
+        <label class="input-title" for="isbn">ISBN</label>
+        <input class="input-field" type="number" id="isbn" />
+        <input type="radio" id="read" name="read" value="yes" checked />
+        <label for="read">Read</label>
+        <input type="radio" id="not-read" name="read" value="no" />
+        <label for="not-read">Not Read</label>
+        <input class="form-btn" type="submit" value="ADD BOOK" />
+      </form>
+      <h2>My Library</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>ISBN</th>
+            <th>Read</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="library"></tbody>
+      </table>
     </div>
-
-</body>
+  </body>
 </html>

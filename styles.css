@@ -1,104 +1,128 @@
 /* GENERAL */
 
 body {
-    font-family: 'Courier New', Courier, monospace;
-    margin: auto;
-    padding: 0;
+  background-color: #f2f2f2;
+  font-family: 'Courier New', Courier, monospace;
+  margin: auto;
+  padding: 0;
 }
 
 h1 {
-    background-color: teal;
-    color: white;
-    margin-top: 0;
-    padding: 20px;
+  background-color: teal;
+  color: white;
+  margin-top: 0;
+  padding: 20px;
 }
 
 h2 {
-    background-color: steelblue;
-    color: white;
-    margin-top: 30px;
-    padding: 20px;
+  background-color: steelblue;
+  color: white;
+  margin-top: 30px;
+  padding: 20px;
 }
 
 .container {
-    width: 100%;
+  width: 100%;
 }
 
 /* FORM */
 
 #book-form {
-    margin-left: 20px;
-    max-width: 500px;
-    width: 100%;
+  margin-left: 20px;
+  max-width: 400px;
+  width: 100%;
 }
 
 .input-title {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .input-field {
-    display: block;
-    font-family: inherit;
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 3px;
-    width: 100%;
+  display: block;
+  font-family: inherit;
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding: 3px;
+  width: 100%;
 }
 
 .form-btn {
-    background-color: teal;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    display: block;
-    font-family: inherit;
-    font-size: 17px;
-    margin: 20px 0 0 0;
-    padding: 5px 10px;
-    width: 150px;
+  background-color: teal;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: inherit;
+  font-size: 17px;
+  margin: 20px 0 0 0;
+  outline: none;
+  padding: 5px 10px;
+  width: 150px;
 }
 
 /* LIBRARY */
 
 table {
-    margin-left: 20px;
-    text-align: left;
+  border: 1px solid teal;
+  margin-left: 20px;
+  min-width: 500px;
+  text-align: left;
 }
 
 table th {
-    font-size: 17px;
-    padding-right: 20px;
+  background-color: teal;
+  color: white;
+  font-size: 17px;
+  padding: 5px 20px 5px 5px;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
 }
 
 table td {
-    padding: 10px 20px 10px 0;
+  padding: 5px 20px 5px 5px;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+  padding: 3px 5px;
+}
+
+.read-btn {
+  background-color: steelblue;
 }
 
 .remove-btn {
-    background-color: red;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-family: inherit;
-    padding: 3px 5px;
+  background-color: red;
 }
 
 /* ALERT MESSAGES */
 
-.success, .error {
-    color: white;
-    font-size: 17px;
-    margin: 20px;
-    padding: 10px;
+.success,
+.error {
+  color: white;
+  font-size: 17px;
+  margin: 20px;
+  padding: 10px;
 }
 
 .error {
-    background-color: red;
+  background-color: red;
 }
 
 .success {
-    background-color: green;
+  background-color: green;
 }
-
